@@ -6,33 +6,13 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  StyleSheet
-} from 'react-native';
-
 import SignInScreen from './src/screens/SignInScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
 
 function App(): JSX.Element {
   return (
-    <SafeAreaView style={styles.background}>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        showsVerticalScrollIndicator={false}
-        >
-          <SignInScreen/>
-        </ScrollView>
-    </SafeAreaView>
+      <SignInScreen/>
   );
 }
-
-const styles = StyleSheet.create({
-  background:{
-    flex: 1,
-    backgroundColor: "#F9FBFC",
-  }
-});
 
 export default App;

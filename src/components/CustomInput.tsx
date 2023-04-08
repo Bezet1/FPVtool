@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
 
     },
     visibleContainer:{
-        width: 50,
+        width: 40,
         justifyContent: 'center',
         alignContent:'center',
         padding: 8,

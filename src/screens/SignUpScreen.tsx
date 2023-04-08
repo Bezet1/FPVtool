@@ -6,58 +6,67 @@ import {
     View,
     Pressable,
     SafeAreaView,
-    ScrollView,
-    useWindowDimensions
+    ScrollView
 } from 'react-native';
 
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
 
-function SignInScreen(): JSX.Element {
+function SignUpScreen(): JSX.Element {
     
-    const {height} = useWindowDimensions();
-
     interface User{
         name: string,
+        email: string,
         password: string,
+        confirmPassword: string,
     }
 
-    const [user, setUser] = useState<User>({name: '', password: ''});
+    const [user, setUser] = useState<User>({name: '', email: '', password: '', confirmPassword: ""});
     const [securePassword, setSecurePassword] = useState<boolean>(true);
+    const [secureConfirmPassword, setSecureConfirmPassword] = useState<boolean>(true);
 
     const handleNameChange = (name: string) => {
         setUser(prevUser => ({ ...prevUser, name }));
+    }
+    const handleEmailChange = (email: string) => {
+        setUser(prevUser => ({ ...prevUser, email }));
     }
     
     const handlePasswordChange = (password: string) => {
         setUser(prevUser => ({ ...prevUser, password }));
     }
+    
+    const handleConfirmPasswordChange = (confirmPassword: string) => {
+        setUser(prevUser => ({ ...prevUser, confirmPassword }));
+    }
 
     const handlePasswordSecure = ()=>{
         securePassword ? setSecurePassword(false): setSecurePassword(true);
+    }
+    
+    const handleConfirmPasswordSecure = ()=>{
+        secureConfirmPassword ? setSecureConfirmPassword(false): setSecureConfirmPassword(true);
     }
 
     return (
         <SafeAreaView style={styles.backGround}>
         <View>
-            <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.container}>
-                <Image source={require("../assets/images/logo.png")} style={[styles.logo, {height: height * 0.25}]} resizeMode='contain'/>
                 <View style={styles.inputsContainer}>
-                    <Text style={styles.loginText}>Log In</Text>
+                    <Text style={styles.loginText}>Sign Up</Text>
                     <CustomInput value={user.name} onChangeText={handleNameChange} placeholder="Username"
+                        secureText={false} isPassword={false}/> 
+                    <CustomInput value={user.email} onChangeText={handleEmailChange} placeholder="Email"
                         secureText={false} isPassword={false}/> 
                     <CustomInput value={user.password} onChangeText={handlePasswordChange} placeholder="Password"
                         secureText={securePassword} isPassword={true} changeVisible={handlePasswordSecure}
                         />
-                    <View style={styles.forgotPasswordWrapper}>
-                        <Pressable children={({ pressed }) => (
-                            <Text style={[styles.hyperLink , pressed && {color: '#800080'}]}>
-                                Forgot password?
-                            </Text>)}/>
-                    </View>
+                    <CustomInput value={user.confirmPassword} onChangeText={handleConfirmPasswordChange} placeholder="Confirm Password"
+                        secureText={secureConfirmPassword} isPassword={true} changeVisible={handleConfirmPasswordSecure}
+                        />
                     <View style={{marginTop:20}}>
-                        <CustomButton text='Sign In'/>
+                        <CustomButton text='Sign Up'/>
                     </View>
                     <View style={styles.orContainer}>
                         <View style={styles.horizontalLine}/>
@@ -73,11 +82,10 @@ function SignInScreen(): JSX.Element {
                         <Image style={styles.iconIMG} resizeMode='contain' source={require('../assets/images/googleIcon.png')}></Image>
                     </Pressable>
                 </View>
-                <View style={styles.newContainer}>
-                    <Text style={styles.newToText}>New to FPVtool?</Text>
+                <View style={styles.alreadyContainer}>
+                    <Text style={styles.alreadyText}>Already a user?</Text>
                     <Pressable children={({ pressed }) => (
-                        <Text style={[styles.hyperLink , pressed && {color: '#800080'}]}>
-                            Join now
+                        <Text style={[styles.hyperLink , pressed && {color: '#800080'}]}>Log In
                         </Text>)}/>
                 </View>    
             </View>
@@ -91,17 +99,12 @@ const styles = StyleSheet.create({
     backGround:{
         flex:1, 
         justifyContent: 'center', 
-        backgroundColor: "#FAF9F6",
+        backgroundColor: "#FAF9F6"
     },
     container:{
         flex: 1,
         alignItems:"center",
         padding: 20,
-    },
-    logo:{
-        width: '100%',
-        maxWidth: 500,
-        maxHeight: 500,
     },
     loginText:{
         fontSize: 35,
@@ -145,7 +148,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
-
     },
     iconIMG:{
         width: 60,
@@ -154,21 +156,17 @@ const styles = StyleSheet.create({
     iconsContainer:{
         marginHorizontal: 5,
     },
-    newContainer:{
+    alreadyContainer:{
         marginTop: 20,
         flexDirection: 'row',
         alignContent: 'center',
         justifyContent: 'space-between',
     },
-    newToText:{
+    alreadyText:{
         fontSize: 15,
         color: 'black',
         marginRight: 10,
     },
-    forgotPasswordWrapper: {
-        width: '100%',
-        alignItems: 'flex-end',
-      },
 })
 
-export default SignInScreen;
+export default SignUpScreen;
