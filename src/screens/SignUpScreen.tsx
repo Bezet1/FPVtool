@@ -58,7 +58,7 @@ function SignUpScreen(): JSX.Element {
     }
 
     const onSignUpPressed = () => {
-
+        navigation.navigate('ConfirmEmail');
     }
 
     return (

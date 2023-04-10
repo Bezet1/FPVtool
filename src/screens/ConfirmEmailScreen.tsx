@@ -10,8 +10,12 @@ import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
 import HyperlinkText from '../components/HyperlinkText';
 
+import { useNavigation } from '@react-navigation/native';
+
 function ConfirmEmailScreen(): JSX.Element {
     
+    const navigation = useNavigation();
+
     interface User{
         name: string,
         email: string,
@@ -25,6 +29,18 @@ function ConfirmEmailScreen(): JSX.Element {
         setCode(()=> code);
     }
 
+    const onConfirmPressed = () => {
+
+    }
+
+    const onResendCodePressed = () => {
+
+    }
+
+    const onBackToLoginPressed = () => {
+        navigation.navigate('SignIn')
+    }
+
     return (
         <SafeAreaView style={styles.backGround}>
             <View style={styles.container}>
@@ -33,12 +49,12 @@ function ConfirmEmailScreen(): JSX.Element {
                     <CustomInput value={code} onChangeText={handleCodeChange} placeholder="Enter your code"
                         secureText={false} isPassword={false}/> 
                     <View style={{marginTop:10}}>
-                        <CustomButton text='Confirm'/>
+                        <CustomButton text='Confirm' onClick={onConfirmPressed}/>
                     </View>
                 </View>
                 <View style={styles.textsContainer}>
-                    <HyperlinkText text='Resend code'/>
-                    <HyperlinkText text='Back to Login'/>
+                    <HyperlinkText text='Resend code' onClick={onResendCodePressed}/>
+                    <HyperlinkText text='Back to Login' onClick={onBackToLoginPressed}/>
                 </View>
             </View>
         </SafeAreaView>
