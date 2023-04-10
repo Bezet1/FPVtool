@@ -21,7 +21,7 @@ function CustomInput({placeholder, value, onChangeText, secureText, isPassword, 
     function showIsVisible(){
         if(isPassword){
             return(
-                <Pressable style={({pressed})=> [styles.visibleContainer, pressed && {transform:[{scale: 0.8}], opacity: 0.3}]} onPress={changeVisible}>
+                <Pressable style={({pressed})=> [styles.visibleContainer, pressed && {opacity: 0.3}]} onPress={changeVisible}>
                     <Image style={styles.icon} source={secureText ? require("../assets/images/hiddenPassword.png"): require("../assets/images/showPassword.png")}
                     resizeMode='center'/>
                 </Pressable>

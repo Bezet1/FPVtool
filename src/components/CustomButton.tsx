@@ -5,9 +5,9 @@ import {
      Text,
 } from 'react-native';
 
-function CustomButton({text}:{text: string}): JSX.Element {
+function CustomButton({text, onClick}:{text: string, onClick: ()=> void}): JSX.Element {
     return (
-        <Pressable style={({pressed})=> [styles.button, pressed && {backgroundColor: '#2d60b3'}]} onPress={()=>console.log('hejka')}>
+        <Pressable style={({pressed})=> [styles.button, pressed && {backgroundColor: '#2d60b3'}]} onPress={onClick}>
             <Text style={styles.textButton}>{text}</Text>
         </Pressable>
     );

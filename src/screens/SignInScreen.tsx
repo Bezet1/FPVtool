@@ -12,10 +12,13 @@ import {
 
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
+import HyperlinkText from '../components/HyperlinkText';
+import { useNavigation } from '@react-navigation/native';
 
 function SignInScreen(): JSX.Element {
     
     const {height} = useWindowDimensions();
+    const navigation = useNavigation();
 
     interface User{
         name: string,
@@ -25,16 +28,28 @@ function SignInScreen(): JSX.Element {
     const [user, setUser] = useState<User>({name: '', password: ''});
     const [securePassword, setSecurePassword] = useState<boolean>(true);
 
-    const handleNameChange = (name: string) => {
+    const handleNameChange = (name: string): void => {
         setUser(prevUser => ({ ...prevUser, name }));
     }
     
-    const handlePasswordChange = (password: string) => {
+    const handlePasswordChange = (password: string): void => {
         setUser(prevUser => ({ ...prevUser, password }));
     }
 
-    const handlePasswordSecure = ()=>{
+    const handlePasswordSecure = (): void =>{
         securePassword ? setSecurePassword(false): setSecurePassword(true);
+    }
+
+    const onForgotPasswordPressed = (): void => {
+        navigation.navigate('ForgotPassword');
+    }
+    
+    const onJoinNowPressed = () => {
+        navigation.navigate('SignUp');
+    }
+
+    const onLogInPressed = () => {
+
     }
 
     return (
@@ -51,13 +66,10 @@ function SignInScreen(): JSX.Element {
                         secureText={securePassword} isPassword={true} changeVisible={handlePasswordSecure}
                         />
                     <View style={styles.forgotPasswordWrapper}>
-                        <Pressable children={({ pressed }) => (
-                            <Text style={[styles.hyperLink , pressed && {color: '#800080'}]}>
-                                Forgot password?
-                            </Text>)}/>
+                        <HyperlinkText text='Forgot password?' onClick={onForgotPasswordPressed}/>
                     </View>
                     <View style={{marginTop:20}}>
-                        <CustomButton text='Sign In'/>
+                        <CustomButton text='Log In' onClick={onLogInPressed}/>
                     </View>
                     <View style={styles.orContainer}>
                         <View style={styles.horizontalLine}/>
@@ -75,10 +87,7 @@ function SignInScreen(): JSX.Element {
                 </View>
                 <View style={styles.newContainer}>
                     <Text style={styles.newToText}>New to FPVtool?</Text>
-                    <Pressable children={({ pressed }) => (
-                        <Text style={[styles.hyperLink , pressed && {color: '#800080'}]}>
-                            Join now
-                        </Text>)}/>
+                    <HyperlinkText text='Join now' onClick={onJoinNowPressed}/>
                 </View>    
             </View>
         </ScrollView>

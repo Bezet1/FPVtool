@@ -6,12 +6,11 @@
  */
 
 import React from 'react';
-import SignInScreen from './src/screens/SignInScreen';
-import SignUpScreen from './src/screens/SignUpScreen';
+import Navigation from './src/navigation/MyStack';
 
 function App(): JSX.Element {
   return (
-      <SignInScreen/>
+      <Navigation/>
   );
 }
 

@@ -11,9 +11,14 @@ import {
 
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
+import HyperlinkText from '../components/HyperlinkText';
+
+import { useNavigation } from '@react-navigation/native';
 
 function SignUpScreen(): JSX.Element {
     
+    const navigation = useNavigation();
+
     interface User{
         name: string,
         email: string,
@@ -48,6 +53,14 @@ function SignUpScreen(): JSX.Element {
         secureConfirmPassword ? setSecureConfirmPassword(false): setSecureConfirmPassword(true);
     }
 
+    const onLogInPressed = () => {
+        navigation.navigate('SignIn');
+    }
+
+    const onSignUpPressed = () => {
+
+    }
+
     return (
         <SafeAreaView style={styles.backGround}>
         <View>
@@ -66,7 +79,7 @@ function SignUpScreen(): JSX.Element {
                         secureText={secureConfirmPassword} isPassword={true} changeVisible={handleConfirmPasswordSecure}
                         />
                     <View style={{marginTop:20}}>
-                        <CustomButton text='Sign Up'/>
+                        <CustomButton text='Sign Up' onClick={onSignUpPressed}/>
                     </View>
                     <View style={styles.orContainer}>
                         <View style={styles.horizontalLine}/>
@@ -84,9 +97,7 @@ function SignUpScreen(): JSX.Element {
                 </View>
                 <View style={styles.alreadyContainer}>
                     <Text style={styles.alreadyText}>Already a user?</Text>
-                    <Pressable children={({ pressed }) => (
-                        <Text style={[styles.hyperLink , pressed && {color: '#800080'}]}>Log In
-                        </Text>)}/>
+                    <HyperlinkText text='Log In' onClick={onLogInPressed}/>
                 </View>    
             </View>
         </ScrollView>
