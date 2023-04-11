@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     nameText:{
         fontSize: 20,
-        color: 'black',
+        color: '#333',
         margin: 10,
     }
 })
