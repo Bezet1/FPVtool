@@ -49,9 +49,9 @@ const SignInScreen: React.FC<Props> = ({ route, navigation }: Props) => {
     const onJoinNowPressed = () => {
         navigation.navigate('SignUp');
     }
-
+    
     const onLogInPressed = () => {
-
+        navigation.navigate('DrawerRoot', { screen: 'Main' });
     }
 
     return (

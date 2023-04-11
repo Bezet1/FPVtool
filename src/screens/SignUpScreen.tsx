@@ -65,7 +65,7 @@ const SignUpScreen: React.FC<Props> = ({ route, navigation }: Props) => {
     return (
         <SafeAreaView style={styles.backGround}>
         <View>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{backgroundColor: "#FAF9F6"}}>
             <View style={styles.container}>
                 <View style={styles.inputsContainer}>
                     <Text style={styles.loginText}>Sign Up</Text>
