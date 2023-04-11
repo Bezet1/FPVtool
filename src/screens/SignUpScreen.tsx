@@ -13,12 +13,13 @@ import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
 import HyperlinkText from '../components/HyperlinkText';
 
-import { useNavigation } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/MyStack';
 
-function SignUpScreen(): JSX.Element {
+type Props = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
+
+const SignUpScreen: React.FC<Props> = ({ route, navigation }: Props) => {
     
-    const navigation = useNavigation();
-
     interface User{
         name: string,
         email: string,

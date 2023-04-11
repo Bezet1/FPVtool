@@ -10,18 +10,12 @@ import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
 import HyperlinkText from '../components/HyperlinkText';
 
-import { useNavigation } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/MyStack';
 
-function ConfirmEmailScreen(): JSX.Element {
-    
-    const navigation = useNavigation();
+type Props = NativeStackScreenProps<RootStackParamList, 'ConfirmEmail'>;
 
-    interface User{
-        name: string,
-        email: string,
-        password: string,
-        confirmPassword: string,
-    }
+const ConfirmEmailScreen: React.FC<Props> = ({ route, navigation }: Props) => {
 
     const [code, setCode] = useState<string>("")
 

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {
-    Text,
     StyleSheet,
     View,
     SafeAreaView,
@@ -11,11 +10,12 @@ import CustomButton from '../components/CustomButton';
 import HyperlinkText from '../components/HyperlinkText';
 import TextToFit from '../components/TextToFit';
 
-import { useNavigation } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/MyStack';
 
-function ForgotPasswordScreen(): JSX.Element {
+type Props = NativeStackScreenProps<RootStackParamList, 'ForgotPassword'>;
 
-    const navigation = useNavigation();
+const ForgotPasswordScreen: React.FC<Props> = ({ route, navigation }: Props) => {
 
     const [email, setEmail] = useState<string>("")
 

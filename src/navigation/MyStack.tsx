@@ -1,4 +1,3 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -9,9 +8,17 @@ import ConfirmEmailScreen from '../screens/ConfirmEmailScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  SignIn: undefined;
+  SignUp: undefined;
+  ConfirmEmail: undefined;
+  ForgotPassword: undefined;
+  ResetPassword: undefined;
+};
 
-const MyStack = () => {
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+const MyStack: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
