@@ -6,6 +6,9 @@ import { View,
      Image
 } from 'react-native';
 
+import Ionicons from "react-native-vector-icons/Ionicons";
+
+
 interface Props{
     placeholder: string,
     value: string,
@@ -21,9 +24,8 @@ function CustomInput({placeholder, value, onChangeText, secureText, isPassword, 
     function showIsVisible(){
         if(isPassword){
             return(
-                <Pressable style={({pressed})=> [styles.visibleContainer, pressed && {opacity: 0.3}]} onPress={changeVisible}>
-                    <Image style={styles.icon} source={secureText ? require("../assets/images/hiddenPassword.png"): require("../assets/images/showPassword.png")}
-                    resizeMode='center'/>
+                <Pressable style={({pressed})=> [styles.visibleContainer, pressed && {opacity: 0.7}]} onPress={changeVisible}>
+                    {secureText ? <Ionicons name='eye-off-outline' size={24} color={'#333'}/>: <Ionicons name='eye' size={24} color={'#333'}/>}
                 </Pressable>
             )
         }

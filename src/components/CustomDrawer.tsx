@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, StyleSheet, Image, Text} from 'react-native'
+import React, {useState} from 'react';
+import {View, StyleSheet, Image, Text, Switch} from 'react-native'
 import {DrawerContentComponentProps} from '@react-navigation/drawer';
 import TextToFit from './TextToFit';
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -17,26 +17,48 @@ const section2 = [
 
 const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => {
 
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   return (
     <View style={{flex:1}}>
         <View style={styles.profileContainer}>
-            <View style={styles.profImageContainer}>
-                <Image style={styles.profImage} source={require('../assets/images/prof.jpg')}></Image>
+            <View style={styles.profAndTitleContainer}>
+                <View style={styles.imageContainer}>
+                    <Image style={styles.profImage} source={require('../assets/images/prof.jpg')}></Image>
+                </View>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.titleText}>FPVtool</Text>
+                </View>
             </View>
-            <TextToFit text='Bartek Zientek' style={styles.nameText}/>
+            <View style={styles.nameContainer}>
+                <TextToFit text='Bartek Zientek' style={styles.nameText}/>
+                <TextToFit text='bati1205@o2.pl' style={styles.nameText}/>
+            </View>
         </View>
         <View style={styles.elementsContainer}>
             <DrawerElement text='Home' onClick={()=> {props.navigation.navigate("Home")}}
                 icon={<Ionicons name='home-outline' size={22} color={'#333'}/>}/>
             <DrawerElement text='Map' onClick={()=> {props.navigation.navigate("Home")}}
                 icon={<Ionicons name='map-outline' size={22} color={'#333'}/>}/>
+            <DrawerElement text='Profile' onClick={()=> {props.navigation.navigate("Home")}}
+                icon={<Ionicons name='person-outline' size={22} color={'#333'}/>}/>
         </View>
             <DrawerElement text='Settings' onClick={()=> {props.navigation.navigate("Settings")}}
                 icon={<Ionicons name='settings-outline' size={22} color={'#333'}/>}/>
         <View style={styles.themeContainer}>
             <MaterialCommunityIcons name='theme-light-dark' size={22} color={'#333'}/>
-            <Text style={styles.elementText}>Theme</Text>
+            <Text style={styles.elementText}>Dark mode</Text>
+            <View style={{flex: 1, alignItems: 'flex-end'}}>
+                <Switch
+                    trackColor={{false: '#767577', true: '#81b0ff'}}
+                    thumbColor={isEnabled ? 'green' : '#f4f3f4'}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={toggleSwitch}
+                    value={isEnabled}
+                    style={{marginHorizontal: 10}}
+                    />
+                </View>
         </View>
         <View style={styles.logoutContainer}>
             <DrawerElement text='Log Out' onClick={()=> {console.log("logout")}}
@@ -50,24 +72,39 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => 
 const styles = StyleSheet.create({
     profileContainer:{
         width: '100%',
-        height: 200,
         justifyContent:'center',
-        alignItems:'center',
+        borderBottomWidth: 1,
+        borderColor: '#333',
     },
-    profImageContainer:{
-        width: 80,
-        height: 80,
-        borderRadius: 40,
-        overflow: 'hidden'
+    profAndTitleContainer:{
+        flexDirection: 'row',
+    },
+    imageContainer:{
+        padding: 10,
+        paddingBottom: 0,
+    },
+    titleContainer:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+    },
+    nameContainer:{
+        padding: 10,
     },
     profImage:{
-        width: '100%',
-        height: '100%',
+        width: 60,
+        height: 60,
+        borderRadius: 40,
     },
     nameText:{
-        fontSize: 20,
+        fontSize: 14,
         color: '#333',
-        margin: 10,
+        fontWeight: '500',
+    },
+    titleText:{
+        color: '#333',
+        fontSize: 30,
+        fontWeight: '800',
     },
     logoutContainer:{
         borderTopColor: '#333', 
@@ -81,6 +118,7 @@ const styles = StyleSheet.create({
     },
     elementsContainer:{
         flex: 1,
+        paddingTop: 20,
     },
     themeContainer:{
         width: '100%',
