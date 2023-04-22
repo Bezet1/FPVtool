@@ -3,18 +3,25 @@ import { View,
     StyleSheet,
     SafeAreaView
  } from 'react-native'
+
 import React from 'react'
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import CustomHeader from '../components/CustomHeader';
 import { RootStackParamList } from '../navigation/MyStack';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type Props = {
+    navigation: DrawerNavigationProp<RootStackParamList>;
+  };
 
-const HomeScreen: React.FC<Props> = ({ route, navigation }: Props) => {
-  return (
+const HomeScreen: React.FC<Props> = ({navigation}: Props) => {
+
+    const toggleDrawerHandler = () => {
+        navigation.toggleDrawer();
+    }
+
+    return (
     <SafeAreaView>
-        <View style={styles.header}>
-
-        </View>
+        <CustomHeader screenName='HomeScreen' toggleDrawer={toggleDrawerHandler}/>
         <View style={styles.container}>
             <Text style={{color: 'black'}}>HomeScreen</Text>
         </View>
@@ -27,13 +34,6 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center', 
         backgroundColor: "#FAF9F6",
-    },
-    header:{
-        width: '100%',
-        height: 50,
-        borderColor: "#e8e8e8",
-        borderBottomWidth: 1,
-        backgroundColor: 'white'
     }
 })
 

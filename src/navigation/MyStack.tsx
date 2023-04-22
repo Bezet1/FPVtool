@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
@@ -10,8 +9,8 @@ import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import DrawerRoot from './DrawerRoot';
 
+
 export type RootStackParamList = {
-  DrawerRoot: {screen:string},
   SignIn: undefined;
   SignUp: undefined;
   ConfirmEmail: undefined;
@@ -19,6 +18,7 @@ export type RootStackParamList = {
   ResetPassword: undefined;
   Home: undefined;
   Settings: undefined;
+  DrawerRoot: undefined,
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

@@ -6,15 +6,20 @@ import { View,
 import React from 'react'
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/MyStack';
+import CustomHeader from '../components/CustomHeader';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Settings'>;
+type Props = {navigation: DrawerNavigationProp<RootStackParamList>};
 
-const SettingsScreen: React.FC<Props> = ({ route, navigation }: Props) => {
-  return (
+const SettingsScreen: React.FC<Props> = ({navigation}: Props) => {
+    
+    const toggleDrawerHandler = () => {
+        navigation.toggleDrawer();
+    }
+
+    return (
     <SafeAreaView>
-        <View style={styles.header}>
-
-        </View>
+        <CustomHeader screenName='Settings' toggleDrawer={toggleDrawerHandler}/>
         <View style={styles.container}>
             <Text style={{color: 'black'}}>SettingsScreen</Text>
         </View>

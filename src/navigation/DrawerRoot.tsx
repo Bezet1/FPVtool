@@ -13,23 +13,10 @@ const Drawer = createDrawerNavigator<RootStackParamList>();
 const DrawerRoot: React.FC = () => {
   return (
       <Drawer.Navigator drawerContent={props => <CustomDrawer {...props}/>} screenOptions={{
-        headerShown: false, 
-        drawerActiveBackgroundColor: 'blue',
-        drawerActiveTintColor: 'white',
-        drawerInactiveTintColor: '#333',
-        drawerLabelStyle:{marginLeft: -20, fontSize: 15}
-        
+        headerShown: false,   
       }}>
-        <Drawer.Screen name="Home" component={MainScreen} options={{
-          drawerIcon: ({color})=>(
-            <Ionicons name='home-outline' size={22} color={color}/>
-          )
-        }}/>
-        <Drawer.Screen name="Settings" component={SettingsScreen} options={{
-          drawerIcon: ({color})=>(
-            <Ionicons name='settings-outline' size={22} color={color}/>
-          )
-        }}/>
+        <Drawer.Screen name="Home" component={MainScreen}/>
+        <Drawer.Screen name="Settings" component={SettingsScreen}/>
       </Drawer.Navigator> 
   )
 }

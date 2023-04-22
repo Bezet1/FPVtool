@@ -1,13 +1,23 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native'
-import {DrawerContentScrollView, DrawerItemList, DrawerContentComponentProps } from '@react-navigation/drawer';
+import {View, StyleSheet, Image, Text} from 'react-native'
+import {DrawerContentComponentProps} from '@react-navigation/drawer';
 import TextToFit from './TextToFit';
+import Ionicons from "react-native-vector-icons/Ionicons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
+import DrawerElement from './DrawerElement';
 
 type CustomDrawerProps = DrawerContentComponentProps & {
   // additional props, if any
 }
 
+const section2 = [
+    { name: 'About', screen: 'Home' },
+    { name: 'Contact Us', screen: 'Contact' },
+  ];
+
 const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => {
+
+
   return (
     <View style={{flex:1}}>
         <View style={styles.profileContainer}>
@@ -16,12 +26,22 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => 
             </View>
             <TextToFit text='Bartek Zientek' style={styles.nameText}/>
         </View>
-        <DrawerContentScrollView {...props}>
-        <DrawerItemList {...props} />
-        {/* additional custom content */}
-        </DrawerContentScrollView>
-        <View >
-
+        <View style={styles.elementsContainer}>
+            <DrawerElement text='Home' onClick={()=> {props.navigation.navigate("Home")}}
+                icon={<Ionicons name='home-outline' size={22} color={'#333'}/>}/>
+            <DrawerElement text='Map' onClick={()=> {props.navigation.navigate("Home")}}
+                icon={<Ionicons name='map-outline' size={22} color={'#333'}/>}/>
+        </View>
+            <DrawerElement text='Settings' onClick={()=> {props.navigation.navigate("Settings")}}
+                icon={<Ionicons name='settings-outline' size={22} color={'#333'}/>}/>
+        <View style={styles.themeContainer}>
+            <MaterialCommunityIcons name='theme-light-dark' size={22} color={'#333'}/>
+            <Text style={styles.elementText}>Theme</Text>
+        </View>
+        <View style={styles.logoutContainer}>
+            <DrawerElement text='Log Out' onClick={()=> {console.log("logout")}}
+                icon={<Ionicons name='exit-outline' size={25} color={'black'}/>}
+                textStyle={styles.logoutText}/>
         </View>
     </View>
   );
@@ -35,9 +55,9 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     profImageContainer:{
-        width: 100,
-        height: 100,
-        borderRadius: 50,
+        width: 80,
+        height: 80,
+        borderRadius: 40,
         overflow: 'hidden'
     },
     profImage:{
@@ -48,7 +68,33 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#333',
         margin: 10,
-    }
+    },
+    logoutContainer:{
+        borderTopColor: '#333', 
+        borderTopWidth: 1,
+    },
+    logoutText:{
+        fontSize: 15,
+        color: '#333',
+        fontWeight: '800',
+        paddingHorizontal: 10,
+    },
+    elementsContainer:{
+        flex: 1,
+    },
+    themeContainer:{
+        width: '100%',
+        height: 50,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingLeft: 20,
+    },
+    elementText:{
+        fontSize: 16,
+        color: '#333',
+        fontWeight: '500',
+        paddingLeft: 20,        
+    },
 })
 
 export default CustomDrawer;
