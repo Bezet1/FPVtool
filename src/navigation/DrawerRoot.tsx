@@ -1,6 +1,5 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Ionicons from "react-native-vector-icons/Ionicons"
 
 import MainScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';

@@ -6,11 +6,7 @@ interface Props {
     text: string;
     onClick: ()=> void;
     icon: React.ReactNode;
-    textStyle?: {
-        fontWeight: string,
-        fontSize: number;
-        color: string
-      };
+    textStyle?: {};
   }
 
 const DrawerElement: React.FC<Props> = ({text, onClick, icon, textStyle = {}}) => {
