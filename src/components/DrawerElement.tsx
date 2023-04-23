@@ -3,15 +3,17 @@ import React from 'react'
 import Ripple from 'react-native-material-ripple';
 
 interface Props {
+    rippleColor: string;
     text: string;
     onClick: ()=> void;
     icon: React.ReactNode;
     textStyle?: {};
   }
 
-const DrawerElement: React.FC<Props> = ({text, onClick, icon, textStyle = {}}) => {
+const DrawerElement: React.FC<Props> = ({rippleColor, text, onClick, icon, textStyle = {}}) => {
   return (
-    <Ripple style={styles.rippleContainer} onPress={onClick}>
+    <Ripple style={styles.rippleContainer} onPress={onClick}
+    rippleDuration={150} rippleColor={rippleColor}>
         {icon}
         <Text style={[styles.text, textStyle]}>{text}</Text>
     </Ripple>

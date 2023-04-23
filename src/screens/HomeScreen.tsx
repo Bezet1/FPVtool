@@ -16,7 +16,7 @@ type Props = {
 
 const HomeScreen: React.FC<Props> = ({navigation}: Props) => {
 
-    const { Theme, setTheme } = useContext(ThemeContext);
+    const { Theme } = useContext(ThemeContext);
 
     const toggleDrawerHandler = () => {
         navigation.toggleDrawer();
@@ -24,7 +24,8 @@ const HomeScreen: React.FC<Props> = ({navigation}: Props) => {
 
     return (
     <SafeAreaView>
-        <CustomHeader screenName='HomeScreen' toggleDrawer={toggleDrawerHandler}/>
+        <CustomHeader screenName='Home' toggleDrawer={toggleDrawerHandler}
+        headerColor={Theme.header} textColor={Theme.text} secondColor={Theme.border}/>
         <View style={[styles.container, {backgroundColor: Theme.background}]}>
         </View>
     </SafeAreaView>

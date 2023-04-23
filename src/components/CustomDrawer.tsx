@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {View, StyleSheet, Image, Text, Switch} from 'react-native'
+import {View, StyleSheet, Image, Text, Switch, Pressable} from 'react-native'
 import {DrawerContentComponentProps} from '@react-navigation/drawer';
 import TextToFit from './TextToFit';
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -15,8 +15,8 @@ type CustomDrawerProps = DrawerContentComponentProps & {
 const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => {
 
     const { Theme, setTheme } = useContext(ThemeContext);
-
     const [isDark, setIsDark] = useState<boolean>(false);
+
     const toggleSwitch = () => {
         setIsDark(previousState => !previousState);   
     };
@@ -27,7 +27,8 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => 
 
   return (
     <View style={{flex:1, backgroundColor: Theme.background}}>
-        <View style={[styles.profileContainer, {borderColor: Theme.text}]}>
+        <Pressable style={[styles.profileContainer, {borderColor: Theme.border}]}
+        onPress={()=>props.navigation.navigate("Profile")}>
             <View style={styles.profAndTitleContainer}>
                 <View style={styles.imageContainer}>
                     <Image style={styles.profImage} source={require('../assets/images/prof.jpg')}></Image>
@@ -40,21 +41,21 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => 
                 <TextToFit text='Bartek Zientek' style={[styles.nameText, {color: Theme.text, fontWeight: '600',}]}/>
                 <TextToFit text='bati1205@o2.pl' style={[styles.nameText, {color: Theme.text}]}/>
             </View>
-        </View>
+        </Pressable>
         <View style={styles.elementsContainer}>
             <DrawerElement text='Home' onClick={()=> {props.navigation.navigate("Home")}}
                 icon={<Ionicons name='home-outline' size={22} color={Theme.text}/>}
-                textStyle={{color: Theme.text}}/>
+                textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
             <DrawerElement text='Map' onClick={()=> {props.navigation.navigate("Home")}}
                 icon={<Ionicons name='map-outline' size={22} color={Theme.text}/>}
-                textStyle={{color: Theme.text}}/>
-            <DrawerElement text='Profile' onClick={()=> {props.navigation.navigate("Home")}}
+                textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
+            <DrawerElement text='Profile' onClick={()=> {props.navigation.navigate("Profile")}}
                 icon={<Ionicons name='person-outline' size={22} color={Theme.text}/>}
-                textStyle={{color: Theme.text}}/>
+                textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
         </View>
             <DrawerElement text='Settings' onClick={()=> {props.navigation.navigate("Settings")}}
                 icon={<Ionicons name='settings-outline' size={22} color={Theme.text}/>}
-                textStyle={{color: Theme.text}}/>
+                textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
         <View style={styles.themeContainer}>
             <MaterialCommunityIcons name='theme-light-dark' size={22} color={Theme.text}/>
             <Text style={[styles.elementText, {color: Theme.text}]}>Dark mode</Text>
@@ -69,10 +70,10 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => 
                     />
                 </View>
         </View>
-        <View style={[styles.logoutContainer, {borderColor: Theme.text}]}>
+        <View style={[styles.logoutContainer, {borderColor: Theme.border}]}>
             <DrawerElement text='Log Out' onClick={()=> {console.log("logout")}}
                 icon={<Ionicons name='exit-outline' size={25} color={Theme.text}/>}
-                textStyle={[styles.logoutText, {color: Theme.text}]}/>
+                textStyle={[styles.logoutText, {color: Theme.text}]} rippleColor={Theme.ripple}/>
         </View>
     </View>
   );

@@ -3,19 +3,22 @@ import React from 'react'
 import Ionicons from "react-native-vector-icons/Ionicons"
 
 interface props{
-    screenName: string,
+    headerColor: string;
+    screenName: string;
+    textColor: string;
+    secondColor: string;
     toggleDrawer: () => void;
 }
 
-const CustomHeader: React.FC<props> = ({screenName, toggleDrawer}) => {
+const CustomHeader: React.FC<props> = ({headerColor, screenName, toggleDrawer,  textColor, secondColor}) => {
   
     return (
-    <View style={styles.header}>
+    <View style={[styles.header, {backgroundColor: headerColor, borderColor: secondColor,}]}>
         <Pressable style={styles.menuContainer} onPress={toggleDrawer}>
-            <Ionicons name='menu' size={35} color={"#333"}/>
+            <Ionicons name='menu' size={35} color={textColor}/>
         </Pressable>
         <View>
-            <Text style={styles.screenName}>{screenName}</Text>
+            <Text style={[styles.screenName, {color: textColor}]}>{screenName}</Text>
         </View>
     </View>
   )
@@ -25,7 +28,6 @@ const styles = StyleSheet.create({
     header:{
         width: '100%',
         height: 50,
-        borderColor: "#e8e8e8",
         borderBottomWidth: 1,
         backgroundColor: 'white',
         flexDirection: 'row',
@@ -40,7 +42,6 @@ const styles = StyleSheet.create({
     },
     screenName:{
         fontSize: 20,
-        color: '#333',
         fontWeight: '400'
     }
 })
