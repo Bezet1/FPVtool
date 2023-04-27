@@ -11,6 +11,7 @@ import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { RootStackParamList } from '../navigation/MyStack';
 import CustomHeader from '../components/CustomHeader';
 import { ThemeContext } from '../components/ThemeContext';
+import Feed from '../components/Feed';
 
 type Props = {
     navigation: DrawerNavigationProp<RootStackParamList>;
@@ -27,7 +28,7 @@ const HomeScreen: React.FC<Props> = ({navigation}: Props) => {
             <CustomHeader screenName='Home' navigation={navigation}
             headerColor={Theme.header} textColor={Theme.text} secondColor={Theme.border}/>
             <View style={styles.feedContainer}>
-                
+                <Feed/>
             </View>
         </View>
     </SafeAreaView>

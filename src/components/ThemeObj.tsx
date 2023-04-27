@@ -21,8 +21,8 @@ export const LightTheme: ThemeColors = {
 export const DarkTheme: ThemeColors = {
   primary: '#0A84FF',
   secondary: '#5AC8FA',
-  background: '#232323',
-  header: 'black',
+  background: '#171717',
+  header: 'rgba(255, 255, 255, 0.03)',
   text: 'rgba(255, 255, 255, 0.92)',
   border: 'rgba(255, 255, 255, 0.3)',
   ripple: '#fafafa'

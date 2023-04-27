@@ -2,29 +2,138 @@ import React, { useState, useEffect } from 'react';
 import { View, Image } from 'react-native';
 import axios from 'axios';
 
-const ImageDisplay = () => {
-  const [imageUrl, setImageUrl] = useState('');
+//https://source.unsplash.com/random/?animal
 
-  useEffect(() => {
-    fetchRandomImage();
-  }, []);
+const Feed = () => {
+  
+  const [images, setImages] = useState([]);
 
-  const fetchRandomImage = async () => {
-    try {
-      const response = await axios.get(
-        `https://api.unsplash.com/photos/random?client_id=YOUR_ACCESS_KEY_HERE`
-      );
-      setImageUrl(response.data.urls.regular);
-    } catch (error) {
-      console.error(error);
-    }
+  useEffect(()=> {
+    handleClick();
+  }, [])
+  
+  useEffect(()=> {
+    console.warn(images);
+  }, [images])
+
+  const handleClick = () => {
+    axios
+      .get("https://dog.ceo/api/breed/malinois/images")
+      .then(res => {
+        setImages(res.data.message);
+      })
+      .catch(err => console.log(err));
   };
-
+/*
   return (
     <View>
-      <Image source={{ uri: imageUrl }} style={{ width: 200, height: 200 }} />
+      {images2.map(img => (
+        <Image source={img} style={{ width: 200, height: 200 }} />
+      ))}
     </View>
+  );
+
+*/
+
+return (
+  <View style={{width: '100%', height: '100%'}}>
+      <Image source={{uri: "https://picsum.photos/400/600"}} resizeMode='contain' style={{height: '100%', width: '100%' }} />
+  </View>)
+};
+
+export default Feed;
+
+/*
+import React, { useEffect, useState } from "react";
+import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator, StatusBar } from "react-native";
+import axios from "axios";
+
+const Feed = () => {
+  const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const getUsers = () => {
+    setIsLoading(true);
+    axios.get(`https://randomuser.me/api/?page=${currentPage}&results=10`)
+      .then(res => {
+        //setUsers(res.data.results);
+        setUsers([...users, ...res.data.results]);
+        setIsLoading(false);
+      });
+  };
+
+  const renderItem = ({ item }) => {
+    return (
+      <View style={styles.itemWrapperStyle}>
+        <Image style={styles.itemImageStyle} source={{ uri: item.picture.large }} />
+        <View style={styles.contentWrapperStyle}>
+          <Text style={styles.txtNameStyle}>{`${item.name.title} ${item.name.first} ${item.name.last}`}</Text>
+          <Text style={styles.txtEmailStyle}>{item.email}</Text>
+        </View>
+      </View>
+    );
+  };
+
+  const renderLoader = () => {
+    return (
+      isLoading ?
+        <View style={styles.loaderStyle}>
+          <ActivityIndicator size="large" color="#aaa" />
+        </View> : null
+    );
+  };
+
+  const loadMoreItem = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, [currentPage]);
+
+  return (
+    <>
+      <StatusBar backgroundColor="#000" />
+      <FlatList
+        data={users}
+        renderItem={renderItem}
+        keyExtractor={item => item.email}
+        ListFooterComponent={renderLoader}
+        onEndReached={loadMoreItem}
+        onEndReachedThreshold={0}
+      />
+    </>
   );
 };
 
-export default ImageDisplay;
+const styles = StyleSheet.create({
+  itemWrapperStyle: {
+    flexDirection: "row",
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderColor: "#ddd",
+  },
+  itemImageStyle: {
+    width: 50,
+    height: 50,
+    marginRight: 16,
+  },
+  contentWrapperStyle: {
+    justifyContent: "space-around",
+  },
+  txtNameStyle: {
+    fontSize: 16,
+  },
+  txtEmailStyle: {
+    color: "#777",
+  },
+  loaderStyle: {
+    marginVertical: 16,
+    alignItems: "center",
+  },
+});
+
+export default Feed;
+*/
