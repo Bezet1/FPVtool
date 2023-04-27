@@ -18,13 +18,9 @@ const ProfileScreen: React.FC<Props> = ({navigation}: Props) => {
 
     const { Theme } = useContext(ThemeContext);
 
-    const toggleDrawerHandler = () => {
-        navigation.toggleDrawer();
-    }
-
     return (
     <SafeAreaView>
-        <CustomHeader screenName='Profile' toggleDrawer={toggleDrawerHandler}
+        <CustomHeader screenName='Profile' navigation={navigation}
         headerColor={Theme.header} textColor={Theme.text} secondColor={Theme.border}/>
         <View style={[styles.container, {backgroundColor: Theme.background}]}>
         </View>

@@ -51,7 +51,7 @@ const SignInScreen: React.FC<Props> = ({ route, navigation }: Props) => {
     }
     
     const onLogInPressed = () => {
-        navigation.navigate('DrawerRoot', { screen: 'Main' });
+        navigation.navigate('DrawerRoot');
     }
 
     return (

@@ -1,20 +1,22 @@
 import { View, Text, StyleSheet, Pressable} from 'react-native'
 import React from 'react'
 import Ionicons from "react-native-vector-icons/Ionicons"
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { RootStackParamList } from '../navigation/MyStack';
 
 interface props{
     headerColor: string;
     screenName: string;
     textColor: string;
     secondColor: string;
-    toggleDrawer: () => void;
+    navigation: DrawerNavigationProp<RootStackParamList>;
 }
 
-const CustomHeader: React.FC<props> = ({headerColor, screenName, toggleDrawer,  textColor, secondColor}) => {
+const CustomHeader: React.FC<props> = ({headerColor, screenName, navigation,  textColor, secondColor}) => {
   
     return (
     <View style={[styles.header, {backgroundColor: headerColor, borderColor: secondColor,}]}>
-        <Pressable style={styles.menuContainer} onPress={toggleDrawer}>
+        <Pressable style={styles.menuContainer} onPress={()=>navigation.toggleDrawer()}>
             <Ionicons name='menu' size={35} color={textColor}/>
         </Pressable>
         <View>

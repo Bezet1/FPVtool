@@ -1,13 +1,15 @@
 import React, {useContext} from 'react'
 import { View, 
-    Text, 
     StyleSheet,
-    SafeAreaView
+    SafeAreaView,
+    StatusBar,
+    Text, 
+    Image
  } from 'react-native'
 
 import { DrawerNavigationProp } from '@react-navigation/drawer';
-import CustomHeader from '../components/CustomHeader';
 import { RootStackParamList } from '../navigation/MyStack';
+import CustomHeader from '../components/CustomHeader';
 import { ThemeContext } from '../components/ThemeContext';
 
 type Props = {
@@ -18,24 +20,31 @@ const HomeScreen: React.FC<Props> = ({navigation}: Props) => {
 
     const { Theme } = useContext(ThemeContext);
 
-    const toggleDrawerHandler = () => {
-        navigation.toggleDrawer();
-    }
-
     return (
-    <SafeAreaView>
-        <CustomHeader screenName='Home' toggleDrawer={toggleDrawerHandler}
-        headerColor={Theme.header} textColor={Theme.text} secondColor={Theme.border}/>
-        <View style={[styles.container, {backgroundColor: Theme.background}]}>
+    <SafeAreaView style={{flex: 1}}>
+        <View style={[styles.mainContainer, {backgroundColor: Theme.background}]}>
+            <StatusBar backgroundColor={"#7fa5e3"}/>
+            <CustomHeader screenName='Home' navigation={navigation}
+            headerColor={Theme.header} textColor={Theme.text} secondColor={Theme.border}/>
+            <View style={styles.feedContainer}>
+                
+            </View>
         </View>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-    container:{
+    mainContainer:{
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: 'red'
+    },
+    feedContainer:{
+        width: '100%',
         height: '100%',
-        alignItems: 'center', 
+        alignItems: 'center',
+        maxWidth: 700,
     }
 })
 

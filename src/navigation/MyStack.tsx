@@ -22,6 +22,7 @@ export type RootStackParamList = {
   Settings: undefined;
   DrawerRoot: undefined,
   Profile: undefined;
+  Map: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

@@ -34,7 +34,7 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => 
                     <Image style={styles.profImage} source={require('../assets/images/prof.jpg')}></Image>
                 </View>
                 <View style={styles.titleContainer}>
-                    <Text style={[styles.titleText, {color: Theme.text}]}>FPVtool</Text>
+                    <Text style={[styles.titleText, {color: "#3d84f5"}]}>FPVtool</Text>
                 </View>
             </View>
             <View style={styles.nameContainer}>
@@ -46,7 +46,7 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => 
             <DrawerElement text='Home' onClick={()=> {props.navigation.navigate("Home")}}
                 icon={<Ionicons name='home-outline' size={22} color={Theme.text}/>}
                 textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
-            <DrawerElement text='Map' onClick={()=> {props.navigation.navigate("Home")}}
+            <DrawerElement text='Map' onClick={()=> {props.navigation.navigate("Map")}}
                 icon={<Ionicons name='map-outline' size={22} color={Theme.text}/>}
                 textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
             <DrawerElement text='Profile' onClick={()=> {props.navigation.navigate("Profile")}}
