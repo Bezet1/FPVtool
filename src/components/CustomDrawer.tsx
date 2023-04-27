@@ -66,7 +66,6 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => 
                     ios_backgroundColor="#3e3e3e"
                     onValueChange={toggleSwitch}
                     value={isDark}
-                    style={{marginHorizontal: 10}}
                     />
                 </View>
         </View>
@@ -133,6 +132,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingLeft: 20,
+        paddingRight: 15,
     },
     elementText:{
         fontSize: 16,

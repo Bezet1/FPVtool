@@ -25,7 +25,7 @@ function CustomInput({placeholder, value, onChangeText, secureText, isPassword, 
         if(isPassword){
             return(
                 <Pressable style={({pressed})=> [styles.visibleContainer, pressed && {opacity: 0.7}]} onPress={changeVisible}>
-                    {secureText ? <Ionicons name='eye-off-outline' size={24} color={'#333'}/>: <Ionicons name='eye' size={24} color={'#333'}/>}
+                    {secureText ? <Ionicons name='eye-off-outline' size={24} color={'#333'}/>: <Ionicons name='eye-outline' size={24} color={'#333'}/>}
                 </Pressable>
             )
         }
