@@ -22,9 +22,10 @@ const HomeScreen: React.FC<Props> = ({navigation}: Props) => {
     const { Theme } = useContext(ThemeContext);
 
     return (
+    <>
+    <StatusBar backgroundColor={"#7fa5e3"}/>
     <SafeAreaView style={{flex: 1}}>
         <View style={[styles.mainContainer, {backgroundColor: Theme.background}]}>
-            <StatusBar backgroundColor={"#7fa5e3"}/>
             <CustomHeader screenName='Home' navigation={navigation}
             headerColor={Theme.header} textColor={Theme.text} secondColor={Theme.border}/>
             <View style={styles.feedContainer}>
@@ -32,20 +33,16 @@ const HomeScreen: React.FC<Props> = ({navigation}: Props) => {
             </View>
         </View>
     </SafeAreaView>
+    </>
   )
 }
 
 const styles = StyleSheet.create({
     mainContainer:{
         flex: 1,
-        alignItems: 'center',
-        backgroundColor: 'red'
     },
     feedContainer:{
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-        maxWidth: 700,
+        flex:1,
     }
 })
 

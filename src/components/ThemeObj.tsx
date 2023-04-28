@@ -6,6 +6,7 @@ export type ThemeColors = {
   text: string;
   border: string;
   ripple: string;
+  post: string
 }
 
 export const LightTheme: ThemeColors = {
@@ -15,16 +16,18 @@ export const LightTheme: ThemeColors = {
   header: '#FFFFFF',
   text: '#333333',
   border: '#d6d6d6',
-  ripple: '#212121'
+  ripple: '#212121',
+  post: '#ffffff'
 }
 
 export const DarkTheme: ThemeColors = {
   primary: '#0A84FF',
   secondary: '#5AC8FA',
   background: '#171717',
-  header: 'rgba(255, 255, 255, 0.03)',
+  header: '#0f0f0f',
   text: 'rgba(255, 255, 255, 0.92)',
   border: 'rgba(255, 255, 255, 0.3)',
-  ripple: '#fafafa'
+  ripple: '#fafafa',
+  post: '#0f0f0f'
 }
 

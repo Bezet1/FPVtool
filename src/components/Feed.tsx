@@ -1,29 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { View, Image } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { View, Image, ScrollView } from 'react-native';
 import axios from 'axios';
+import PostElement from './PostElement';
+import { ThemeContext } from './ThemeContext';
 
 //https://source.unsplash.com/random/?animal
 
 const Feed = () => {
   
-  const [images, setImages] = useState([]);
+  // const [images, setImages] = useState([]);
 
-  useEffect(()=> {
-    handleClick();
-  }, [])
+  // useEffect(()=> {
+  //   handleClick();
+  // }, [])
   
-  useEffect(()=> {
-    console.warn(images);
-  }, [images])
+  // useEffect(()=> {
+  //   console.warn(images);
+  // }, [images])
 
-  const handleClick = () => {
-    axios
-      .get("https://dog.ceo/api/breed/malinois/images")
-      .then(res => {
-        setImages(res.data.message);
-      })
-      .catch(err => console.log(err));
-  };
+  // const handleClick = () => {
+  //   axios
+  //     .get("")
+  //     .then(res => {
+  //       setImages(res.data.message);
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 /*
   return (
     <View>
@@ -35,10 +37,14 @@ const Feed = () => {
 
 */
 
+const {Theme} = useContext(ThemeContext);
+
 return (
-  <View style={{width: '100%', height: '100%'}}>
-      <Image source={{uri: "https://picsum.photos/400/600"}} resizeMode='contain' style={{height: '100%', width: '100%' }} />
-  </View>)
+  <ScrollView style={{flex: 1, backgroundColor: Theme.background}}>
+    <PostElement/>
+    <PostElement/>
+  </ScrollView>
+  )
 };
 
 export default Feed;

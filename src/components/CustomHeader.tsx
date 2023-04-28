@@ -28,7 +28,6 @@ const CustomHeader: React.FC<props> = ({headerColor, screenName, navigation,  te
 
 const styles = StyleSheet.create({
     header:{
-        width: '100%',
         height: 50,
         borderBottomWidth: 1,
         backgroundColor: 'white',
