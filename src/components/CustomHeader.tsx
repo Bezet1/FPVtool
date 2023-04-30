@@ -16,12 +16,15 @@ const CustomHeader: React.FC<props> = ({headerColor, screenName, navigation,  te
   
     return (
     <View style={[styles.header, {backgroundColor: headerColor, borderColor: secondColor,}]}>
-        <Pressable style={styles.menuContainer} onPress={()=>navigation.toggleDrawer()}>
-            <Ionicons name='menu' size={35} color={textColor}/>
-        </Pressable>
-        <View>
+        <View style={styles.leftSideContainer}>
+            <Pressable style={styles.menuContainer} onPress={()=>navigation.toggleDrawer()}>
+                <Ionicons name='menu' size={35} color={textColor}/>
+            </Pressable>
             <Text style={[styles.screenName, {color: textColor}]}>{screenName}</Text>
         </View>
+        <Pressable style={styles.addContainer}>
+            <Ionicons name='add' size={35} color={textColor}/>
+        </Pressable>
     </View>
   )
 }
@@ -30,13 +33,18 @@ const styles = StyleSheet.create({
     header:{
         height: 50,
         borderBottomWidth: 1,
-        backgroundColor: 'white',
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    leftSideContainer:{
+        height: '100%',
+        alignItems: 'center',
+        flexDirection: 'row',
     },
     menuContainer:{
+        height: '100%',
         marginRight: 10,
-        height: 50,
         width: 50,
         justifyContent: 'center',
         alignItems: 'center',
@@ -44,6 +52,13 @@ const styles = StyleSheet.create({
     screenName:{
         fontSize: 20,
         fontWeight: '400'
+    },
+    addContainer:{
+        height: '100%',
+        width: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingRight: 10,
     }
 })
 

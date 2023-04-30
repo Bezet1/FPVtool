@@ -23,7 +23,7 @@ export const LightTheme: ThemeColors = {
 export const DarkTheme: ThemeColors = {
   primary: '#0A84FF',
   secondary: '#5AC8FA',
-  background: '#171717',
+  background: '#212121',
   header: '#0f0f0f',
   text: 'rgba(255, 255, 255, 0.92)',
   border: 'rgba(255, 255, 255, 0.3)',
