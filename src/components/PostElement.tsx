@@ -1,7 +1,8 @@
 import React, {useContext, useState} from 'react'
 import { View, Text, StyleSheet, Image, Pressable, ActivityIndicator } from 'react-native'
 import { ThemeContext } from './ThemeContext';
-import Ionicons from "react-native-vector-icons/Ionicons"
+import Ionicons from "react-native-vector-icons/Ionicons";
+import Description from './Description';
 
 interface props{
     imageURL: string;
@@ -14,7 +15,7 @@ const PostElement: React.FC<props> = ({imageURL}) => {
   const [isLoadingImage, setIsLoadingImage] = useState(true);
 
   const toggleLike = (): void => {
-    isLike ? setIslike(false): setIslike(true);
+    setIslike((prev) => !prev);
   }
   
 
@@ -30,20 +31,27 @@ const PostElement: React.FC<props> = ({imageURL}) => {
                     <Image source={require('../assets/images/prof.jpg')} style={styles.profImage}/>
                     <Text style={[styles.userNameText, {color: Theme.text}]}>Bartek Zientek</Text>
                 </Pressable>
-                <Text style={[styles.dateText, {color: Theme.text}]}>20.05.2023</Text>
+                <View style={styles.dateAndOptionsContainer}>
+                    <Text style={[styles.dateText, {color: Theme.text}]}>20.05.2023</Text>
+                    <Pressable style={styles.optionsContainer}>
+                        <Ionicons name='ellipsis-horizontal' size={27} color={Theme.text}/>
+                    </Pressable>
+                </View>
             </View>
             <View style={styles.descriptionContainer}>
-                <Text style={[styles.descriptionText, {color: Theme.text}]}>Hejka! Chialem pokazac wam ten obrazek!</Text>
+                <Description textColor={Theme.text} text={"Siemaneczko zieomeczki".repeat(15)}/>
             </View>
         </View>
         {isLoadingImage && (
         <ActivityIndicator size="large" color="#999999" style={styles.loader} />
         )}
-        <Image 
-        onLoad={handleOnLoad}
-        source={{uri: imageURL}} 
-        resizeMode='contain' 
-        style={styles.image} />
+        <View style={styles.imageContainer}>
+            <Image 
+            onLoad={handleOnLoad}
+            source={{uri: imageURL}} 
+            resizeMode='cover' 
+            style={styles.image} />
+        </View>
         <View style={[styles.bottomBar, {backgroundColor: Theme.post}]}>
             <View style={styles.iconsContainer}>
                 <Pressable style={styles.pressableIconContainer} onPress={toggleLike}>
@@ -72,10 +80,10 @@ const styles = StyleSheet.create({
     },
     profileAndDateContainer:{
         width: '100%',
+        height: 50,
         flexDirection: 'row',
         justifyContent: "space-between",
         alignItems: 'center',
-        paddingRight: 10,
     },
     profileContainer:{
         padding: 5,
@@ -83,38 +91,48 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
     },
-    descriptionContainer:{
-        width: '100%',
-        paddingHorizontal: 10,
-        paddingBottom: 10,
-    },
-    descriptionText:{
-        fontSize: 15,
-        fontWeight: '400',
-    },
     profImage:{
         aspectRatio: 1/1,
         width: 40,
         height: 40,
         borderRadius: 20,
     },
-    image:{
-        aspectRatio: 4/5
-    },
     userNameText:{
         marginLeft: 10,
         fontSize: 15,
         fontWeight: '500',
     },
+    dateAndOptionsContainer:{
+        alignItems: 'center',
+        flexDirection: 'row',
+        height: '100%'
+    },
     dateText:{
         fontSize: 15,
         fontWeight: '400',
+    },
+    optionsContainer:{
+        width: 50,
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    descriptionContainer:{
+        width: '100%',
+        paddingHorizontal: 10,
+        paddingBottom: 10,
+    },
+    imageContainer:{
+        width: '100%',
+        height: 500,
+    },
+    image:{
+       height: '100%'
     },
     bottomBar:{
         width: '100%',
         alignItems: 'flex-start',
         paddingHorizontal: 10,
-        
     },
     iconsContainer:{
         flexDirection: 'row',

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Image, ScrollView, StyleSheet, FlatList } from 'react-native';
+import { View, Image, ScrollView, StyleSheet, FlatList, RefreshControl } from 'react-native';
 import axios from 'axios';
 import PostElement from './PostElement';
 import { ThemeContext } from './ThemeContext';
@@ -13,11 +13,18 @@ const Feed: React.FC= () => {
     {height: 500, width: 400},
     {height: 550, width: 420}]
     );
+  const [refreshing, setRefreshing] = useState(false);
 
   const renderNewPost = () => {
     const newHeight = Math.floor(Math.random() * 500) + 400; // generate a random height between 400 and 900
     const newWidth = Math.floor(Math.random() * 500) + 400; // generate a random width between 400 and 600
     setData([...data, { height: newHeight, width: newWidth }]);
+  };
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    renderNewPost();
+    setRefreshing(false);
   };
 
   useEffect(()=> {
@@ -31,7 +38,10 @@ const Feed: React.FC= () => {
         renderItem={({ item }) => (
           <PostElement imageURL={`http://placekitten.com/${item.width}/${item.height}`} />
         )}
+        showsVerticalScrollIndicator={false}
         onEndReached={renderNewPost}
+        onEndReachedThreshold={2}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
       />
     </View>
   );
