@@ -18,12 +18,12 @@ const CustomHeader: React.FC<props> = ({screenName, navigation}) => {
     <View style={[styles.header, {backgroundColor: Theme.header, borderColor: Theme.border,}]}>
         <View style={styles.leftSideContainer}>
             <Pressable style={styles.menuContainer} onPress={()=>navigation.toggleDrawer()}>
-                <Ionicons name='menu' size={35} color={Theme.text}/>
+                <Ionicons name='menu-outline' size={35} color={Theme.text}/>
             </Pressable>
             <Text style={[styles.screenName, {color: Theme.text}]}>{screenName}</Text>
         </View>
         <Pressable style={styles.addContainer}>
-            <Ionicons name='add' size={35} color={Theme.text}/>
+            <Ionicons name='add-outline' size={35} color={Theme.text}/>
         </Pressable>
     </View>
   )

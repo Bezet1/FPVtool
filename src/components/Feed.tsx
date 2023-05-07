@@ -1,35 +1,41 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { View, Image, ScrollView, StyleSheet, FlatList, RefreshControl } from 'react-native';
-import axios from 'axios';
+import React, { useState, useRef } from 'react';
+import { View, FlatList, RefreshControl } from 'react-native';
 import PostElement from './PostElement';
-import { ThemeContext } from './ThemeContext';
 
-//https://source.unsplash.com/random/?animal
+interface PostData {
+  height: number;
+  width: number;
+  key: number;
+}
 
-const Feed: React.FC= () => {
-
-  const {Theme} = useContext(ThemeContext);
+const Feed = () => {
+  const [data, setData] = useState<PostData[]>([
+    {
+      height: 500,
+      width: 300,
+      key: 0,
+    },
+  ]);
   const [refreshing, setRefreshing] = useState(false);
-  const [data, setData] = useState([
-    {height: 500, width: 400},
-    {height: 550, width: 420}]
-    );
+  const counter = useRef(0);
 
-  const renderNewPost = ():void => {
-    const newHeight = Math.floor(Math.random() * 500) + 400; // generate a random height between 400 and 900
-    const newWidth = Math.floor(Math.random() * 500) + 400; // generate a random width between 400 and 600
-    setData([...data, { height: newHeight, width: newWidth }]);
+  const renderNewPost = () => {
+    counter.current = counter.current + 1;
+    const newHeight = Math.floor(Math.random() * 500) + 400;
+    const newWidth = Math.floor(Math.random() * 500) + 400;
+    setData(prevData => [
+      ...prevData,
+      { height: newHeight, width: newWidth, key: counter.current },
+    ]);
   };
 
-  const onRefresh = ():void => {
+  const onRefresh = () => {
     setRefreshing(true);
     renderNewPost();
     setRefreshing(false);
   };
 
-  useEffect(()=> {
-    renderNewPost();
-  }, [])
+  const keyExtractor = (item: PostData) => item.key.toString();
 
   return (
     <View>
@@ -38,19 +44,15 @@ const Feed: React.FC= () => {
         renderItem={({ item }) => (
           <PostElement imageURL={`http://placekitten.com/${item.width}/${item.height}`} />
         )}
+        keyExtractor={keyExtractor}
+        initialNumToRender={5}
         showsVerticalScrollIndicator={false}
-        onEndReached={renderNewPost}
         onEndReachedThreshold={1}
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
+        onEndReached={renderNewPost}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       />
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  flatList:{
-    flex: 1,
-  }
-})
+};
 
 export default Feed;

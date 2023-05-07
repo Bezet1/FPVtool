@@ -44,23 +44,23 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => 
         </Pressable>
         <View style={styles.elementsContainer}>
             <DrawerElement text='Explore' onClick={()=> {props.navigation.navigate("Explore")}}
-                icon={<Ionicons name='earth-outline' size={24} color={Theme.text}/>}
-                textStyle={{color: Theme.text, marginLeft: -2}} rippleColor={Theme.ripple}/>
+                icon={<Ionicons name='earth-outline' size={27} color={Theme.text}/>}
+                textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
             <DrawerElement text='Map' onClick={()=> {props.navigation.navigate("Map")}}
-                icon={<Ionicons name='map-outline' size={22} color={Theme.text}/>}
+                icon={<Ionicons name='map-outline' size={27} color={Theme.text}/>}
                 textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
             <DrawerElement text='Favorites' onClick={()=> {props.navigation.navigate("Map")}}
-                icon={<Ionicons name='md-star-outline' size={22} color={Theme.text}/>}
+                icon={<Ionicons name='md-star-outline' size={27} color={Theme.text}/>}
                 textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
             <DrawerElement text='Profile' onClick={()=> {props.navigation.navigate("Profile")}}
-                icon={<Ionicons name='person-outline' size={22} color={Theme.text}/>}
+                icon={<Ionicons name='person-outline' size={27} color={Theme.text}/>}
                 textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
         </View>
             <DrawerElement text='Settings' onClick={()=> {props.navigation.navigate("Settings")}}
-                icon={<Ionicons name='settings-outline' size={22} color={Theme.text}/>}
+                icon={<Ionicons name='settings-outline' size={27} color={Theme.text}/>}
                 textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
         <View style={styles.themeContainer}>
-            <MaterialCommunityIcons name='theme-light-dark' size={22} color={Theme.text}/>
+            <MaterialCommunityIcons name='theme-light-dark' size={27} color={Theme.text}/>
             <Text style={[styles.elementText, {color: Theme.text}]}>Dark mode</Text>
             <View style={{flex: 1, alignItems: 'flex-end'}}>
                 <Switch
@@ -74,7 +74,7 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => 
         </View>
         <View style={[styles.logoutContainer, {borderColor: Theme.border}]}>
             <DrawerElement text='Log Out' onClick={()=> {console.log("logout")}}
-                icon={<Ionicons name='exit-outline' size={25} color={Theme.text}/>}
+                icon={<Ionicons name='exit-outline' size={28} color={Theme.text}/>}
                 textStyle={[styles.logoutText, {color: Theme.text}]} rippleColor={Theme.ripple}/>
         </View>
     </View>

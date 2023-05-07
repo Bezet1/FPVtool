@@ -4,7 +4,6 @@ import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { RootStackParamList } from '../navigation/MyStack';
 import { ThemeContext } from './ThemeContext'
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Ripple from 'react-native-material-ripple';
 
 interface props{
   navigation: DrawerNavigationProp<RootStackParamList>;
@@ -20,11 +19,9 @@ const BottomBarNavigator: React.FC<props> = ({explore, search, map, navigation})
 
   return (
     <View style={[styles.container, {backgroundColor: Theme.post, borderColor: Theme.border}]}>
-        <Ripple rippleSize={70} rippleCentered={false} rippleDuration={200}>
-          <Pressable onPress={()=> navigation.navigate("Explore")} style={styles.pressableIcon}>
-            <Ionicons name='earth-outline' size={27} color={explore ? '#3d84f5': Theme.text}/>
-          </Pressable>
-        </Ripple>
+        <Pressable onPress={()=> navigation.navigate("Explore")} style={styles.pressableIcon}>
+          <Ionicons name='earth-outline' size={27} color={explore ? '#3d84f5': Theme.text}/>
+        </Pressable>
         <Pressable onPress={()=> navigation.navigate("Explore")} style={styles.pressableIcon}>
           <Ionicons name='search-outline' size={27} color={search ? '#3d84f5': Theme.text}/>
         </Pressable>
