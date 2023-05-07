@@ -43,11 +43,14 @@ const CustomDrawer: React.FC<CustomDrawerProps> = (props: CustomDrawerProps) => 
             </View>
         </Pressable>
         <View style={styles.elementsContainer}>
-            <DrawerElement text='Home' onClick={()=> {props.navigation.navigate("Home")}}
-                icon={<Ionicons name='home-outline' size={22} color={Theme.text}/>}
-                textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
+            <DrawerElement text='Explore' onClick={()=> {props.navigation.navigate("Explore")}}
+                icon={<Ionicons name='earth-outline' size={24} color={Theme.text}/>}
+                textStyle={{color: Theme.text, marginLeft: -2}} rippleColor={Theme.ripple}/>
             <DrawerElement text='Map' onClick={()=> {props.navigation.navigate("Map")}}
                 icon={<Ionicons name='map-outline' size={22} color={Theme.text}/>}
+                textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
+            <DrawerElement text='Favorites' onClick={()=> {props.navigation.navigate("Map")}}
+                icon={<Ionicons name='md-star-outline' size={22} color={Theme.text}/>}
                 textStyle={{color: Theme.text}} rippleColor={Theme.ripple}/>
             <DrawerElement text='Profile' onClick={()=> {props.navigation.navigate("Profile")}}
                 icon={<Ionicons name='person-outline' size={22} color={Theme.text}/>}

@@ -1,29 +1,29 @@
 import { View, Text, StyleSheet, Pressable} from 'react-native'
-import React from 'react'
+import React, {useContext} from 'react'
 import Ionicons from "react-native-vector-icons/Ionicons"
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { RootStackParamList } from '../navigation/MyStack';
+import { ThemeContext } from './ThemeContext';
 
 interface props{
-    headerColor: string;
     screenName: string;
-    textColor: string;
-    secondColor: string;
     navigation: DrawerNavigationProp<RootStackParamList>;
 }
 
-const CustomHeader: React.FC<props> = ({headerColor, screenName, navigation,  textColor, secondColor}) => {
+const CustomHeader: React.FC<props> = ({screenName, navigation}) => {
   
+    const {Theme} = useContext(ThemeContext);
+
     return (
-    <View style={[styles.header, {backgroundColor: headerColor, borderColor: secondColor,}]}>
+    <View style={[styles.header, {backgroundColor: Theme.header, borderColor: Theme.border,}]}>
         <View style={styles.leftSideContainer}>
             <Pressable style={styles.menuContainer} onPress={()=>navigation.toggleDrawer()}>
-                <Ionicons name='menu' size={35} color={textColor}/>
+                <Ionicons name='menu' size={35} color={Theme.text}/>
             </Pressable>
-            <Text style={[styles.screenName, {color: textColor}]}>{screenName}</Text>
+            <Text style={[styles.screenName, {color: Theme.text}]}>{screenName}</Text>
         </View>
         <Pressable style={styles.addContainer}>
-            <Ionicons name='add' size={35} color={textColor}/>
+            <Ionicons name='add' size={35} color={Theme.text}/>
         </Pressable>
     </View>
   )
@@ -31,6 +31,7 @@ const CustomHeader: React.FC<props> = ({headerColor, screenName, navigation,  te
 
 const styles = StyleSheet.create({
     header:{
+        width: '100%', 
         height: 50,
         borderBottomWidth: 1,
         flexDirection: 'row',

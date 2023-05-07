@@ -16,7 +16,7 @@ const Description: React.FC<props> = ({ text, textColor }) => {
         setExpanded(!expanded);
     };
 
-    const displayText = expanded ? text : text.substring(0, 75);
+    const displayText = expanded ? text : text.substring(0, 30);
 
     return (
         <View>

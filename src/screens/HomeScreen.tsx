@@ -12,6 +12,7 @@ import { RootStackParamList } from '../navigation/MyStack';
 import CustomHeader from '../components/CustomHeader';
 import { ThemeContext } from '../components/ThemeContext';
 import Feed from '../components/Feed';
+import BottomBarNavigator from '../components/BottomBarNavigator';
 
 type Props = {
     navigation: DrawerNavigationProp<RootStackParamList>;
@@ -26,11 +27,11 @@ const HomeScreen: React.FC<Props> = ({navigation}: Props) => {
     <StatusBar backgroundColor={"#7fa5e3"}/>
     <SafeAreaView style={{flex: 1}}>
         <View style={[styles.mainContainer, {backgroundColor: Theme.background}]}>
-            <CustomHeader screenName='Home' navigation={navigation}
-            headerColor={Theme.header} textColor={Theme.text} secondColor={Theme.border}/>
+            <CustomHeader screenName='Explore' navigation={navigation}/>
             <View style={styles.feedContainer}>
                 <Feed/>
             </View>
+            <BottomBarNavigator navigation={navigation} explore={true}/>
         </View>
     </SafeAreaView>
     </>
@@ -40,6 +41,7 @@ const HomeScreen: React.FC<Props> = ({navigation}: Props) => {
 const styles = StyleSheet.create({
     mainContainer:{
         flex: 1,
+        maxWidth: 700,
     },
     feedContainer:{
         flex:1,

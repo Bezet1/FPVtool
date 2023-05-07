@@ -26,26 +26,23 @@ const PostElement: React.FC<props> = ({imageURL}) => {
     return (
     <View style={[styles.container, {backgroundColor: Theme.post}]}>
         <View style={[styles.topBar, {backgroundColor: Theme.post}]}>
-            <View style={styles.profileAndDateContainer}>
-                <Pressable style={styles.profileContainer}>
-                    <Image source={require('../assets/images/prof.jpg')} style={styles.profImage}/>
-                    <Text style={[styles.userNameText, {color: Theme.text}]}>Bartek Zientek</Text>
+            <View style={styles.locationAndOptions}>
+                <Pressable style={styles.locationContainer}>
+                    <Text style={[styles.locationText, {color: Theme.text}]}>Chełm Śląski, Poland</Text>
+                    <Ionicons name='md-location-outline' size={27} color={Theme.text}/>
                 </Pressable>
-                <View style={styles.dateAndOptionsContainer}>
-                    <Text style={[styles.dateText, {color: Theme.text}]}>20.05.2023</Text>
-                    <Pressable style={styles.optionsContainer}>
-                        <Ionicons name='ellipsis-horizontal' size={27} color={Theme.text}/>
-                    </Pressable>
-                </View>
+                <Pressable style={styles.optionsContainer}>
+                    <Ionicons name='ellipsis-horizontal' size={27} color={Theme.text}/>
+                </Pressable>
             </View>
             <View style={styles.descriptionContainer}>
                 <Description textColor={Theme.text} text={"Siemaneczko zieomeczki".repeat(15)}/>
             </View>
         </View>
+        <View style={styles.imageContainer}>
         {isLoadingImage && (
         <ActivityIndicator size="large" color="#999999" style={styles.loader} />
         )}
-        <View style={styles.imageContainer}>
             <Image 
             onLoad={handleOnLoad}
             source={{uri: imageURL}} 
@@ -55,13 +52,16 @@ const PostElement: React.FC<props> = ({imageURL}) => {
         <View style={[styles.bottomBar, {backgroundColor: Theme.post}]}>
             <View style={styles.iconsContainer}>
                 <Pressable style={styles.pressableIconContainer} onPress={toggleLike}>
-                    {isLike ? <Ionicons name='heart' size={30} color={'#3d84f5'}/>:
-                    <Ionicons name='heart-outline' size={30} color={Theme.text}/>}
+                    <Ionicons name={isLike ?'md-star': 'md-star-outline'} size={30} color={isLike ? '#3d84f5': Theme.text}/>
                 </Pressable>
                 <Pressable style={styles.pressableIconContainer}>
                     <Ionicons name='chatbubble-outline' size={27} color={Theme.text}/>
                 </Pressable>
+                <Text style={[styles.commentsText, {color: Theme.text}]}>25</Text>
             </View>
+            <Pressable style={styles.pressableIconContainer}>
+                <Ionicons name='share-social-outline' size={27} color={Theme.text}/>
+            </Pressable>
         </View>
     </View>
   )
@@ -78,38 +78,22 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         backgroundColor: '#4d7994',
     },
-    profileAndDateContainer:{
+    locationAndOptions:{
         width: '100%',
         height: 50,
         flexDirection: 'row',
         justifyContent: "space-between",
         alignItems: 'center',
     },
-    profileContainer:{
+    locationContainer:{
         padding: 5,
         paddingLeft: 10,
         alignItems: 'center',
         flexDirection: 'row',
     },
-    profImage:{
-        aspectRatio: 1/1,
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-    },
-    userNameText:{
-        marginLeft: 10,
+    locationText:{
         fontSize: 15,
-        fontWeight: '500',
-    },
-    dateAndOptionsContainer:{
-        alignItems: 'center',
-        flexDirection: 'row',
-        height: '100%'
-    },
-    dateText:{
-        fontSize: 15,
-        fontWeight: '400',
+        fontWeight: '600',
     },
     optionsContainer:{
         width: 50,
@@ -131,13 +115,18 @@ const styles = StyleSheet.create({
     },
     bottomBar:{
         width: '100%',
-        alignItems: 'flex-start',
         paddingHorizontal: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     iconsContainer:{
         flexDirection: 'row',
-        width: '100%',
-        alignItems: 'flex-start',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    commentsText:{
+        fontSize: 15,
+        fontWeight: '500',
     },
     pressableIconContainer:{
         width: 35,
@@ -148,7 +137,7 @@ const styles = StyleSheet.create({
     loader: {
         position: 'absolute',
         left: '46%',
-        top: '50%'
+        top: '47%'
     },
 
 })

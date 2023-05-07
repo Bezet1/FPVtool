@@ -20,8 +20,7 @@ const ProfileScreen: React.FC<Props> = ({navigation}: Props) => {
 
     return (
     <SafeAreaView>
-        <CustomHeader screenName='Profile' navigation={navigation}
-        headerColor={Theme.header} textColor={Theme.text} secondColor={Theme.border}/>
+        <CustomHeader screenName='Profile' navigation={navigation}/>
         <View style={[styles.container, {backgroundColor: Theme.background}]}>
         </View>
     </SafeAreaView>

@@ -9,19 +9,19 @@ import { ThemeContext } from './ThemeContext';
 const Feed: React.FC= () => {
 
   const {Theme} = useContext(ThemeContext);
+  const [refreshing, setRefreshing] = useState(false);
   const [data, setData] = useState([
     {height: 500, width: 400},
     {height: 550, width: 420}]
     );
-  const [refreshing, setRefreshing] = useState(false);
 
-  const renderNewPost = () => {
+  const renderNewPost = ():void => {
     const newHeight = Math.floor(Math.random() * 500) + 400; // generate a random height between 400 and 900
     const newWidth = Math.floor(Math.random() * 500) + 400; // generate a random width between 400 and 600
     setData([...data, { height: newHeight, width: newWidth }]);
   };
 
-  const onRefresh = () => {
+  const onRefresh = ():void => {
     setRefreshing(true);
     renderNewPost();
     setRefreshing(false);
@@ -40,7 +40,7 @@ const Feed: React.FC= () => {
         )}
         showsVerticalScrollIndicator={false}
         onEndReached={renderNewPost}
-        onEndReachedThreshold={2}
+        onEndReachedThreshold={1}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
       />
     </View>

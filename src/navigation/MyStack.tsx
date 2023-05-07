@@ -18,7 +18,7 @@ export type RootStackParamList = {
   ConfirmEmail: undefined;
   ForgotPassword: undefined;
   ResetPassword: undefined;
-  Home: undefined;
+  Explore: undefined;
   Settings: undefined;
   DrawerRoot: undefined,
   Profile: undefined;

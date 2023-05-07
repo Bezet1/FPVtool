@@ -16,7 +16,7 @@ const DrawerRoot: React.FC = () => {
       <Drawer.Navigator drawerContent={props => <CustomDrawer {...props}/>} screenOptions={{
         headerShown: false,   
       }}>
-        <Drawer.Screen name="Home" component={MainScreen}/>
+        <Drawer.Screen name="Explore" component={MainScreen}/>
         <Drawer.Screen name="Settings" component={SettingsScreen}/>
         <Drawer.Screen name="Profile" component={ProfileScreen}/>
         <Drawer.Screen name="Map" component={MapScreen}/>
