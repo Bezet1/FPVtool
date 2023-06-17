@@ -1,12 +1,12 @@
 import React from 'react';
 import {Text, StyleSheet, StyleProp, ViewStyle, TextStyle} from 'react-native'
 
-interface Props {
+type Props = {
     text:string,
     style: StyleProp<TextStyle>;
   }
 
-function TextToFit({text, style}:Props) {
+function TextToFit({text, style}:Props): JSX.Element {
     return (
         <Text style={style} numberOfLines={1} adjustsFontSizeToFit={true}>{text}</Text>
     );

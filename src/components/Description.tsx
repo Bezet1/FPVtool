@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 
-interface props{
+type Props = {
     text: string,
     textColor: string
 }
 
-const Description: React.FC<props> = ({ text, textColor }) => {
+const Description = ({ text, textColor }: Props) => {
     
     const [expanded, setExpanded] = useState(false);
     const MAX_LENGTH = 100;
 
     const toggleExpanded = () => {
-        setExpanded(!expanded);
+        setExpanded(prev => !prev);
     };
 
     const displayText = expanded ? text : text.substring(0, 30);

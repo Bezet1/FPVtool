@@ -2,13 +2,13 @@ import React, { useState, useRef } from 'react';
 import { View, FlatList, RefreshControl } from 'react-native';
 import PostElement from './PostElement';
 
-interface PostData {
+type PostData = {
   height: number;
   width: number;
   key: number;
 }
 
-const Feed = () => {
+const Feed = (): JSX.Element => {
   const [data, setData] = useState<PostData[]>([
     {
       height: 500,

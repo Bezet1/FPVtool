@@ -9,7 +9,7 @@ import { View,
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 
-interface Props{
+type Props = {
     placeholder: string,
     value: string,
     onChangeText: (text: string) => void,
@@ -19,9 +19,9 @@ interface Props{
 }
 
 
-function CustomInput({placeholder, value, onChangeText, secureText, isPassword, changeVisible}: Props): JSX.Element {
+const CustomInput = ({placeholder, value, onChangeText, secureText, isPassword, changeVisible}: Props): JSX.Element => {
     
-    function showIsVisible(){
+    const showIsVisible = (): JSX.Element | undefined => {
         if(isPassword){
             return(
                 <Pressable style={({pressed})=> [styles.visibleContainer, pressed && {opacity: 0.7}]} onPress={changeVisible}>

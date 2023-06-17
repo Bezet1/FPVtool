@@ -1,12 +1,12 @@
 import React from 'react';
 import {Text, Pressable, StyleSheet} from 'react-native'
 
-interface props{
+type Props = {
     text:string,
     onClick:() => void
 }
 
-function HyperlinkText({text, onClick}:props): JSX.Element {
+function HyperlinkText({text, onClick}: Props): JSX.Element {
     return (
 
         <Pressable onPress={onClick} children={({ pressed }) => (

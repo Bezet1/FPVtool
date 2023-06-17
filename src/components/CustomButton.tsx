@@ -1,11 +1,12 @@
 import React from 'react';
-import { 
-     StyleSheet,
-     Pressable,
-     Text,
-} from 'react-native';
+import { StyleSheet, Pressable, Text} from 'react-native';
 
-function CustomButton({text, onClick}:{text: string, onClick: ()=> void}): JSX.Element {
+type Props = {
+    text: string,
+    onClick: ()=> void,
+}
+
+const CustomButton = ({text, onClick}: Props): JSX.Element => {
     return (
         <Pressable style={({pressed})=> [styles.button, pressed && {backgroundColor: '#2d60b3'}]} onPress={onClick}>
             <Text style={styles.textButton}>{text}</Text>
