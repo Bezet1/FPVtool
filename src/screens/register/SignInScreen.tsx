@@ -58,7 +58,7 @@ const SignInScreen = ({route, navigation}: Props): JSX.Element => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.container}>
             <Image
-              source={require('../assets/images/logo.png')}
+              source={require('../../assets/images/logo.png')}
               style={[styles.logo, {height: height * 0.25}]}
               resizeMode="contain"
             />
@@ -103,7 +103,7 @@ const SignInScreen = ({route, navigation}: Props): JSX.Element => {
                 <Image
                   style={styles.iconIMG}
                   resizeMode="contain"
-                  source={require('../assets/images/fbIcon.png')}></Image>
+                  source={require('../../assets/images/fbIcon.png')}></Image>
               </Pressable>
               <Pressable
                 style={({pressed}) => [
@@ -113,7 +113,7 @@ const SignInScreen = ({route, navigation}: Props): JSX.Element => {
                 <Image
                   style={styles.iconIMG}
                   resizeMode="contain"
-                  source={require('../assets/images/googleIcon.png')}></Image>
+                  source={require('../../assets/images/googleIcon.png')}></Image>
               </Pressable>
             </View>
             <View style={styles.newContainer}>

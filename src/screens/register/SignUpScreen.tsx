@@ -126,7 +126,7 @@ const SignUpScreen = ({route, navigation}: Props): JSX.Element => {
                 <Image
                   style={styles.iconIMG}
                   resizeMode="contain"
-                  source={require('../assets/images/fbIcon.png')}></Image>
+                  source={require('../../assets/images/fbIcon.png')}></Image>
               </Pressable>
               <Pressable
                 style={({pressed}) => [
@@ -136,7 +136,7 @@ const SignUpScreen = ({route, navigation}: Props): JSX.Element => {
                 <Image
                   style={styles.iconIMG}
                   resizeMode="contain"
-                  source={require('../assets/images/googleIcon.png')}></Image>
+                  source={require('../../assets/images/googleIcon.png')}></Image>
               </Pressable>
             </View>
             <View style={styles.alreadyContainer}>
