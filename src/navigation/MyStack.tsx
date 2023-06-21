@@ -26,7 +26,7 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const MyStack: React.FC = () => {
+const MyStack = (): JSX.Element => {
   const [Theme, setTheme] = useState(LightTheme);
 
   return (
