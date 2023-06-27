@@ -15,11 +15,12 @@ const Drawer = createDrawerNavigator<RootStackParamList>();
 const DrawerRoot = (): JSX.Element => {
   return (
     <Drawer.Navigator
-      drawerContent={props => <CustomDrawer {...props} />}
-      screenOptions={{
-        headerShown: false,
-        swipeEdgeWidth: Dimensions.get('screen').width,
-      }}>
+    drawerContent={(props) => <CustomDrawer {...props} />}
+    screenOptions={({ route }) => ({
+      headerShown: false,
+      swipeEnabled: route.name !== 'Map',
+      swipeEdgeWidth: Dimensions.get('screen').width
+    })}>
       <Drawer.Screen name="Explore" component={MainScreen} />
       <Drawer.Screen name="Settings" component={SettingsScreen} />
       <Drawer.Screen name="Profile" component={ProfileScreen} />

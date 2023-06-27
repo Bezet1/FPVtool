@@ -7,7 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 type Props = {
   navigation: DrawerNavigationProp<RootStackParamList>;
-  explore?: boolean;
+  explore?: boolean
   search?: boolean;
   map?: boolean;
 };
